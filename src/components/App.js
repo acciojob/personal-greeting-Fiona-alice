@@ -7,16 +7,21 @@ import { useState } from 'react'
 
 const App = () => {
   let[name, setName] = useState("");
-    function handler(event){
-        setName(event.target.value);
-    }
+   const handleChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const generateGreeting = () => {
+    return name ? `Hello, ${name}!` : '';
+  };
   return (
-     <>
-     <P>Enter Your Name : </P>
-     <input type="text" placeholder='enter your name' onChange={handler}/>
-     <p>Hello {name}!</p>
-     
-     </>
+      <div>
+      <label>
+        Enter your name:
+        <input type="text" value={name} onChange={handleChange} />
+      </label>
+      <p>{generateGreeting()}</p>
+    </div>
   )
 }
 
